@@ -81,7 +81,7 @@ public class KNN {
 		inputData = new BufferedReader(new InputStreamReader(
 				new FileInputStream(new File("chosedKeyForSichuan.txt")), "utf-8"));
 		keywordsData = new BufferedReader(
-				new InputStreamReader(new FileInputStream(new File("keywords.txt")), "utf-8"));
+				new InputStreamReader(new FileInputStream(new File("WeightedKeyword.txt")), "utf-8"));
 		Map<String, Integer> wordandWeight = new HashMap<>();
 		String line;
 		while ((line = keywordsData.readLine()) != null) {

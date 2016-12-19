@@ -72,7 +72,10 @@ public class CrawlDatum{
         this.url = url;
     }
 
-   
+    public CrawlDatum(String url) {
+        this.url = url;
+    }
+
     public byte getStatus() {
         return status;
     }

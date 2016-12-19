@@ -180,7 +180,7 @@ public class compareKeys {
 	//将commonkeyForsuirui.txt中的内容存入程序 keys
 
 	public static void readKeyfile() {
-		readKeyfile("D:/sharon/done/sczf/chosedKeyForSichuan.txt");
+		readKeyfile("chosedKeyForSichuan.txt");
 	}
 	public static void readKeyfile(String filePath) {
 		keys=new ArrayList<>();
@@ -225,7 +225,7 @@ public class compareKeys {
 
 			readKeyfile();
 			
-			File resultFile = new File("D:/sharon/knn/webpageInfo/tempans.txt");
+			File resultFile = new File("tempans.txt");
 			BufferedWriter output = new BufferedWriter(
 					new OutputStreamWriter(new FileOutputStream(resultFile), "utf-8"));
 			

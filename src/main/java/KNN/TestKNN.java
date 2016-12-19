@@ -72,7 +72,7 @@ public class TestKNN {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println(getAns("D:/sharon/knn/webpageInfo/tempans.txt"));
+		System.out.println(getAns("tempans.txt"));
 		//oneFileMutilRow("D:/sharon/done/sczf/data2", "D:/sharon/done/sczf/aaaa.txt");
 	}
 

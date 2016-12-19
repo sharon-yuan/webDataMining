@@ -472,8 +472,8 @@ public class Fetcher {
 				Thread.sleep(1000);
 			} catch (InterruptedException ex) {
 			}
-			LOG.info("-activeThreads=" + activeThreads.get() + ", spinWaiting=" + spinWaiting.get()
-					+ ", fetchQueue.size=" + fetchQueue.getSize());
+			/*LOG.info("-activeThreads=" + activeThreads.get() + ", spinWaiting=" + spinWaiting.get()
+					+ ", fetchQueue.size=" + fetchQueue.getSize());*/
 
 			if (!feeder.isAlive() && fetchQueue.getSize() < 5) {
 				fetchQueue.dump();

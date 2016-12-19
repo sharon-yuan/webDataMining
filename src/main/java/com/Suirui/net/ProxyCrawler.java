@@ -51,6 +51,9 @@ public String filePath;
 			this.addRegex(regex);
 		}
 		HttpRequesterImpl requester = (HttpRequesterImpl) this.getHttpRequester();
+		/*//TODO COOKIE SET
+		String cookie="";
+		requester.setCookie(cookie);*/
 		for (int i = 1; i <= 30; i++) {
 
 			try {
@@ -80,7 +83,7 @@ public String filePath;
 		// webcrawler need 2.07+
 		@SuppressWarnings("unused")
 		HttpRequest request = new HttpRequest(url);
-		int thecaseNum=2;
+		int thecaseNum=4;
 		if(thecaseNum==1){
 		List<String>proxyUrls=new ArrayList<>();
 		List<Integer>ports=new ArrayList<>();
@@ -103,7 +106,7 @@ public String filePath;
 		for (int i = 0; i <= 3; i++) {
 
 			
-			String proxyFilePath="aaaproxy.txt";
+			String proxyFilePath="xicidailiProx";
 			List<String[]> proxyList=ProxyReader.getproxy(proxyFilePath);
 			for(int j=0;j<proxyList.size();j++){
 				proxyGenerator.addProxy(proxyList.get(j)[0],Integer.valueOf(proxyList.get(j)[1]));
@@ -132,12 +135,29 @@ public String filePath;
 			
 	}
 		else if(thecaseNum==3){
+
+			List<String[]> proxyList0=proxyController.readerProxyFromDir();
 			
-			String proxyFilePath="aaaproxy.txt";
+			for(String[]tempProxy:proxyList0){
+				
+				proxyGenerator.addProxy(tempProxy[0],Integer.valueOf(tempProxy[1]));
+			}
+		
+			String proxyFilePath="xicidailiProx";
 			List<String[]> proxyList=ProxyReader.getproxy(proxyFilePath);
 			for(int j=0;j<proxyList.size();j++){
 				proxyGenerator.addProxy(proxyList.get(j)[0],Integer.valueOf(proxyList.get(j)[1]));
 			}
+		}
+		else if(thecaseNum==4){
+
+			List<String[]> proxyList=proxyController.readerProxyFromDir();
+			
+			for(String[]tempProxy:proxyList){
+				
+				proxyGenerator.addProxy(tempProxy[0],Integer.valueOf(tempProxy[1]));
+			}
+		
 		}
 
 	}
@@ -147,6 +167,7 @@ public String filePath;
 		public void markGood(Proxy proxy, String url) {
 			proxyGenerator.addProxy(proxy);
 			InetSocketAddress address = (InetSocketAddress) proxy.address();
+			
 			System.out.println("--------->>>>Good Proxy:" + address.toString() + "   " + url);
 		proxyController.addGoodProxyToDir(address.toString());
 		}
@@ -157,7 +178,7 @@ public String filePath;
 		//System.out.println("--------->>>>Bad Proxy:" + address.toString() + "   " + url);
 			
 			removeProxy(proxy);
-			if(this.getSize()<=5)
+			if(this.getSize()<=50)
 			{
 				List<String[]> proxyList=proxyController.readerProxyFromDir();
 				
@@ -191,8 +212,9 @@ public String filePath;
 			//System.out.println("-----links-end----------"+this.threads+"----"+elements.size());
 			
 			nextLinks.addAll(links);
-			if(file.exists())return;
-			BufferIOFile.save(filePath+MD5Util.MD5(document.data()+" "+page.getUrl()),page.getUrl()+'\n'+document.text());
+			//if(file.exists())return;
+	if(document.text().contains("by cache.51cdn.com (Cdn Cache Server V2.0)")||document.text().contains("Invalid user")||(document.text().length()<500))  {nextLinks.add(page.getUrl());System.err.println(document.text());BufferIOFile.save("E:/data/china/errs/"+MD5Util.MD5(page.getUrl()),page.getUrl()+'\n'+document.text()+" "+page.getResponse().getCode());return;}
+	else BufferIOFile.save(filePath+MD5Util.MD5(page.getUrl()),page.getUrl()+'\n'+document.text());
 			
 	
 		}

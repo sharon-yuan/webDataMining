@@ -58,17 +58,36 @@ public class WebProxyCrawler extends ProxyCrawler{
 
 		String tempDFGK="http://search.ccgp.gov.cn/dataB.jsp?searchtype=1&page_index=1&bidSort=2&buyerName=&projectId=&pinMu=0&bidType=1&dbselect=bidx&kw=&start_time=2014%3A01%3A01&end_time=2016%3A06%3A30&timeType=6&displayZone=&zoneId=&pppStatus=&agentName=";
 		int sizeTEMPDFGK=35983;
-	
-
-		for(int i=1;i<sizeTEMPDFGK;i++){
+		
+		String DFyes="http://search.ccgp.gov.cn/dataB.jsp?searchtype=1&page_index=2&buyerName=&projectId=&dbselect=infox&kw=%E8%A7%86%E9%A2%91%E4%BC%9A%E8%AE%AE&start_time=2016%3A04%3A28&end_time=2016%3A10%3A27&timeType=5&bidSort=0&pinMu=0&bidType=1&displayZone=&zoneId=&pppStatus=&agentName=";
+		int sizeDFyes=24;
+		
+		String suppDFGK="http://search.ccgp.gov.cn/dataB.jsp?searchtype=1&page_index=1&bidSort=2&buyerName=&projectId=&pinMu=0&bidType=1&dbselect=bidx&kw=&start_time=2016%3A6%3A30&end_time=2016%3A11%3A25&timeType=6&displayZone=&zoneId=&pppStatus=&agentName=";
+	int SizeSuppDFGK=8742;
+		/*for(int i=1;i<sizeTEMPDFGK;i++){
 		seedsURL.add("http://search.ccgp.gov.cn/dataB.jsp?searchtype=1&page_index="+i+"&bidSort=2&buyerName=&projectId=&pinMu=0&bidType=1&dbselect=bidx&kw=&start_time=2014%3A01%3A01&end_time=2016%3A06%3A30&timeType=6&displayZone=&zoneId=&pppStatus=&agentName=");
-		}
+		}*/
+			
+			/*for(int i=1;i<sizeDFyes;i++){
+				seedsURL.add("http://search.ccgp.gov.cn/dataB.jsp?searchtype=1&page_index="+i+"&buyerName=&projectId=&dbselect=infox&kw=%E8%A7%86%E9%A2%91%E4%BC%9A%E8%AE%AE&start_time=2016%3A04%3A28&end_time=2016%3A10%3A27&timeType=5&bidSort=0&pinMu=0&bidType=1&displayZone=&zoneId=&pppStatus=&agentName=");
+			}*/
+	
+	String suppQ123dfgk="http://search.ccgp.gov.cn/dataB.jsp?searchtype=1&page_index=1&bidSort=2&buyerName=&projectId=&pinMu=0&bidType=1&dbselect=bidx&kw=&start_time=2016%3A01%3A01&end_time=2016%3A06%3A29&timeType=6&displayZone=&zoneId=&pppStatus=&uniqid=90219&agentName=&wscckey=3fd66f6b83369531_1480661976";
+	int suppQ123dfgkSize=8072;
+	
+	/*
+	for(int i=1;i<SizeSuppDFGK;i++){
+		seedsURL.add("http://search.ccgp.gov.cn/dataB.jsp?searchtype=1&page_index="+i+"&bidSort=2&buyerName=&projectId=&pinMu=0&bidType=1&dbselect=bidx&kw=&start_time=2016%3A6%3A30&end_time=2016%3A11%3A25&timeType=6&displayZone=&zoneId=&pppStatus=&agentName=");
+	}
 		regexs.add("http://www.ccgp.gov.cn/cggg/dfgg/gkzb/.?htm");
-		
+		*/
 
+	for(int i=1;i<suppQ123dfgkSize;i++){
+		seedsURL.add("http://search.ccgp.gov.cn/dataB.jsp?searchtype=1&page_index="+i+"&bidSort=2&buyerName=&projectId=&pinMu=0&bidType=1&dbselect=bidx&kw=&start_time=2016%3A01%3A01&end_time=2016%3A06%3A29&timeType=6&displayZone=&zoneId=&pppStatus=&agentName=");
+	}
+	regexs.add("http://www.ccgp.gov.cn/cggg/dfgg/gkzb/.?htm");
 		
-		
-		regexs.add("http://www.sczfcg.com/view/staticpags/.*");
+		//regexs.add("http://www.sczfcg.com/view/staticpags/.*");
 
 		// do not fetch jpg|png|gif 
 		regexs.add("-.*\\.(jpg|png|gif|css)");
@@ -76,9 +95,9 @@ public class WebProxyCrawler extends ProxyCrawler{
 		regexs.add("-.*#");
 		
 		
-		WebProxyCrawler crawler=new WebProxyCrawler("/china/dfgk88FST/", seedsURL, regexs);
+		WebProxyCrawler crawler=new WebProxyCrawler("/china/dfgkSupppQ123312112/", seedsURL, regexs);
 		crawler.setResumable(false);
-		crawler.setThreads(50);
+		crawler.setThreads(5);
 		crawler.start(2);
 	}
 
